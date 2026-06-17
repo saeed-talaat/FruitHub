@@ -32,7 +32,7 @@ class HomeViewBody extends StatelessWidget {
               ],
             ),
           ),
-          BestSellingGridView()
+          BestSellingGridView(number: 6,)
         ],
       ),
     );

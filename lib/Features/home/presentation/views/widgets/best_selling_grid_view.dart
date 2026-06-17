@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fruits_ecommerce_app/core/widgets/fruit_item.dart';
 
 class BestSellingGridView extends StatelessWidget {
-  const BestSellingGridView({super.key});
-
+  const BestSellingGridView({super.key,  this.number});
+  final int? number;
   @override
   Widget build(BuildContext context) {
     return SliverGrid.builder(
-      itemCount: 6,
+      itemCount: number,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 163 / 214,

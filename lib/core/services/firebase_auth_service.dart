@@ -161,4 +161,9 @@ class FirebaseAuthService {
       throw CustomExceptions(errorMessage: 'حصل خطأ أثناء تسجيل الدخول');
     }
   }
+
+
+  bool isLoggedIn(){
+    return FirebaseAuth.instance.currentUser != null;
+  }
 }
