@@ -8,7 +8,7 @@ import 'package:fruits_ecommerce_app/core/services/shared_preferences_singletone
 UserEntity? getUser() {
   var jsonString = Prefs.getString(kUserData);
 
-  if (jsonString == null || jsonString.isEmpty) {
+  if ( jsonString.isEmpty) {
     return null; 
   }
 
