@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/best_selling_grid_view_bloc_consumer.dart';
+import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/products_grid_view_bloc_consumer.dart';
 import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/best_selling_header.dart';
 import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/custom_home_app_bar.dart';
 import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/featured_list.dart';
@@ -46,7 +46,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
               ],
             ),
           ),
-          BestSellingGridViewBlocConsumer()
+          ProductsGridViewBlocConsumer()
         ],
       ),
     );

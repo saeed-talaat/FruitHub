@@ -12,8 +12,9 @@ final class ProudctsFailure extends ProudctsState {
 }
 final class ProudctsSuccess extends ProudctsState {
   final List<ProductEntity> products;
+  final int productsLength;
 
-  ProudctsSuccess({required this.products});
+  ProudctsSuccess({required this.products, required this.productsLength});
 }
 
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/best_selling_grid_view.dart';
+import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/products_grid_view.dart';
 import 'package:fruits_ecommerce_app/core/helper_functions/get_dummy_porducts.dart';
 import 'package:fruits_ecommerce_app/core/utils/app_text_styles.dart';
 import 'package:fruits_ecommerce_app/core/utils/build_app_bar.dart';
@@ -30,7 +30,7 @@ class BestSellingViewBody extends StatelessWidget {
               ],
             ),
           ),
-          BestSellingGridView(products: getDummyProducts(),),
+          ProductsGridView(products: getDummyProducts(),),
         ],
       ),
     );

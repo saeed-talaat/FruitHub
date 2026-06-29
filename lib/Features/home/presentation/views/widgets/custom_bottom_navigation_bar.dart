@@ -4,8 +4,8 @@ import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/na
 
 
 class CustomBottomNavigationBar extends StatefulWidget {
-  const CustomBottomNavigationBar({super.key});
-
+  const CustomBottomNavigationBar({super.key, required this.onItemTapped});
+ final ValueChanged<int> onItemTapped;
   @override
   State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
 }
@@ -43,6 +43,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
             child: GestureDetector(
               onTap: () {
                 selectedIndex = index;
+                widget.onItemTapped(selectedIndex);
                 setState(() {
                   
                 });

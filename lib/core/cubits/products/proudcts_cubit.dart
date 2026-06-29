@@ -9,13 +9,15 @@ class ProudctsCubit extends Cubit<ProudctsState> {
 
   final ProductsRepo productsRepo;
 
-
-   Future<void> getBestSellingProducts() async {
+  Future<void> getBestSellingProducts() async {
     emit(ProudctsLoading());
     final result = await productsRepo.getBestSellingProducts();
     result.fold(
       (failure) => emit(ProudctsFailure(errorMessage: failure.errorMessage)),
-      (products) => emit(ProudctsSuccess(products: products)),
+      (products) {
+        emit(ProudctsSuccess(products: products, productsLength: products.length ));
+        
+      },
     );
   }
 
@@ -24,7 +26,10 @@ class ProudctsCubit extends Cubit<ProudctsState> {
     final result = await productsRepo.getProducts();
     result.fold(
       (failure) => emit(ProudctsFailure(errorMessage: failure.errorMessage)),
-      (products) => emit(ProudctsSuccess(products: products)),
+      (products) {
+        emit(ProudctsSuccess(products: products, productsLength:  products.length));
+        
+      },
     );
   }
 }
