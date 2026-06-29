@@ -29,6 +29,7 @@ class ProductModel extends ProductEntity {
       isOrganic: isOrganic,
       numberOfCalories: numberOfCalories,
       unitAmount: unitAmount,
+      imageUrl: imageUrl
       
     );
   }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:fruits_ecommerce_app/core/entity/product_entity.dart';
 import 'package:fruits_ecommerce_app/core/utils/app_colors.dart';
-import 'package:fruits_ecommerce_app/core/utils/app_images.dart';
 import 'package:fruits_ecommerce_app/core/utils/app_text_styles.dart';
 
 class FruitItem extends StatelessWidget {
-  const FruitItem({super.key});
-
+  const FruitItem({super.key, required this.productEntity});
+  final ProductEntity productEntity;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -27,18 +27,28 @@ class FruitItem extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 20),
-                Expanded(
-                  child: Center(
-                    child: Image.asset(
-                      Assets.assetsImagesWatermelon,
-                      fit: BoxFit.contain,
-                    ),
+              productEntity.imageUrl != null ?  SizedBox(
+                  height: 100,
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child:   Center(
+                      child:  Image.network(
+                        productEntity.imageUrl!,
+                        fit: BoxFit.contain,
+                      ) 
+                    ) 
+                  ),
+                ) :  Flexible(
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    color: Colors.grey,
                   ),
                 ),
                 const SizedBox(height: 24),
                 ListTile(
                   title: Text(
-                    'بطيخ',
+                    productEntity.productName,
                     style: AppTextStyles.semiBold13.copyWith(
                       color: Color(0xff0C0D0D),
                     ),
@@ -47,7 +57,7 @@ class FruitItem extends StatelessWidget {
                     TextSpan(
                       children: [
                         TextSpan(
-                          text: '20جنية',
+                          text: '${productEntity.productPrice}جنية',
                           style: AppTextStyles.semiBold13.copyWith(
                             color: AppColors.secondaryColor,
                           ),
@@ -59,7 +69,7 @@ class FruitItem extends StatelessWidget {
                             color: AppColors.lightSecondaryColor,
                           ),
                         ),
-                        TextSpan(text: ' '),
+                        TextSpan(text: ''),
                         TextSpan(
                           text: 'الكيلو',
                           style: AppTextStyles.semiBold13.copyWith(
