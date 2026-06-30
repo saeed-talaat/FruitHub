@@ -106,12 +106,12 @@ class Assets {
   /// assets/images/terms_and_condtions_icon.svg
   static const String assetsImagesTermsAndCondtionsIcon = "assets/images/terms_and_condtions_icon.svg";
 
+  /// Assets for assetsImagesTrash
+  /// assets/images/trash.svg
+  static const String assetsImagesTrash = "assets/images/trash.svg";
+
   /// Assets for assetsImagesWatermelon
   /// assets/images/watermelon.png
   static const String assetsImagesWatermelon = "assets/images/watermelon.png";
-
-  /// Assets for assetsImagesWatermelonTest
-  /// assets/images/watermelon_test.svg
-  static const String assetsImagesWatermelonTest = "assets/images/watermelon_test.svg";
 }
 

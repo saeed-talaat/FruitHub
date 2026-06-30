@@ -1,6 +1,9 @@
 import 'dart:io';
 
-class ProductEntity {
+import 'package:equatable/equatable.dart';
+
+// ignore: must_be_immutable
+class ProductEntity extends Equatable {
   final String productName;
   final String productCode;
   final String productDescription;
@@ -29,4 +32,7 @@ class ProductEntity {
     required this.numberOfCalories,
     required this.unitAmount,
   });
+  
+  @override
+  List<Object?> get props => [productCode];
 }

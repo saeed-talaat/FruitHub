@@ -34,7 +34,6 @@ class _ProductsViewBodyState extends State<ProductsViewBody> {
                 buildAppBar(
                   text: 'ألمنتجات',
                   context: context,
-                  showNotafication: true,
                   showArrow: false,
                 ),
                 const SizedBox(height: 16),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fruits_ecommerce_app/Features/home/presentation/views/products_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce_app/Features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/custom_bottom_navigation_bar.dart';
-import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/home_view.dart';
+import 'package:fruits_ecommerce_app/Features/home/presentation/views/widgets/main_view_bloc_consumer.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -15,16 +16,18 @@ class _MainViewState extends State<MainView> {
   int currentViewIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CustomBottomNavigationBar(
-        onItemTapped: (int value) {
-          currentViewIndex = value;
-          setState(() {});
-        },
+    return BlocProvider(
+      create: (context) => CartCubit(),
+      child: Scaffold(
+        bottomNavigationBar: CustomBottomNavigationBar(
+          onItemTapped: (int value) {
+            currentViewIndex = value;
+            setState(() {});
+          },
+        ),
+        body: SafeArea(child: MainViewBlocConsumer(currentViewIndex: currentViewIndex)),
       ),
-      body: IndexedStack(index: currentViewIndex, children: views),
     );
   }
 }
 
-List<Widget> views = [HomeView(), ProductsView(), SizedBox(), SizedBox()];

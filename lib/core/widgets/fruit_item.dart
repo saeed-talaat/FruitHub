@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce_app/Features/home/presentation/cubits/cart_cubit/cart_cubit.dart';
 import 'package:fruits_ecommerce_app/core/entity/product_entity.dart';
 import 'package:fruits_ecommerce_app/core/utils/app_colors.dart';
 import 'package:fruits_ecommerce_app/core/utils/app_text_styles.dart';
@@ -27,24 +29,26 @@ class FruitItem extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(height: 20),
-              productEntity.imageUrl != null ?  SizedBox(
-                  height: 100,
-                  child: AspectRatio(
-                    aspectRatio: 1,
-                    child:   Center(
-                      child:  Image.network(
-                        productEntity.imageUrl!,
-                        fit: BoxFit.contain,
-                      ) 
-                    ) 
-                  ),
-                ) :  Flexible(
-                  child: Container(
-                    height: 100,
-                    width: 100,
-                    color: Colors.grey,
-                  ),
-                ),
+                productEntity.imageUrl != null
+                    ? SizedBox(
+                        height: 100,
+                        child: AspectRatio(
+                          aspectRatio: 1,
+                          child: Center(
+                            child: Image.network(
+                              productEntity.imageUrl!,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Flexible(
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          color: Colors.grey,
+                        ),
+                      ),
                 const SizedBox(height: 24),
                 ListTile(
                   title: Text(
@@ -81,7 +85,15 @@ class FruitItem extends StatelessWidget {
                   ),
                   trailing: CircleAvatar(
                     backgroundColor: AppColors.primaryColor,
-                    child: Icon(Icons.add, color: Colors.white, size: 28),
+                    child: IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        context.read<CartCubit>().addProduct(
+                          productEntity: productEntity,
+                        );
+                      },
+                      icon: Icon(Icons.add, color: Colors.white, size: 28),
+                    ),
                   ),
                 ),
               ],
