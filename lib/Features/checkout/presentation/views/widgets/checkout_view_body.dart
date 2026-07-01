@@ -16,6 +16,11 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
   @override
   initState() {
     pageController = PageController();
+    pageController.addListener(() {
+      setState(() {
+        currentPageIndex = pageController.page!.toInt();
+      });
+    });
     super.initState();
   }
 
@@ -25,28 +30,42 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
     super.dispose();
   }
 
+  int currentPageIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
       child: Column(
         children: [
-          CheckoutSteps(pageController: pageController),
+          CheckoutSteps(currentPageIndex: currentPageIndex, pageController: pageController),
           SizedBox(height: 32),
 
           Expanded(
             child: CheckoutStepsPageView(pageController: pageController),
           ),
-          CustomBottom(onPressed: () {
-            pageController.nextPage(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            );
-          }, text: 'التالي'),
+          CustomBottom(
+            onPressed: () {
+              pageController.nextPage(
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+            },
+            text: getNextButtonText(currentPageIndex),
+          ),
 
           SizedBox(height: 100),
         ],
       ),
     );
+  }
+}
+
+String getNextButtonText(int currentPageIndex) {
+  if (currentPageIndex == 0) {
+    return 'التالي';
+  } else if (currentPageIndex == 1) {
+    return 'التالي';
+  } else {
+    return 'الدفع عبر PayPal';
   }
 }

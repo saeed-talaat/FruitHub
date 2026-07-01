@@ -10,6 +10,10 @@ class Assets {
   /// assets/images/arrow-swap-horizontal.svg
   static const String assetsImagesArrowSwapHorizontal = "assets/images/arrow-swap-horizontal.svg";
 
+  /// Assets for assetsImagesEdit
+  /// assets/images/edit.svg
+  static const String assetsImagesEdit = "assets/images/edit.svg";
+
   /// Assets for assetsImagesFacebookIcon
   /// assets/images/facebook_icon.svg
   static const String assetsImagesFacebookIcon = "assets/images/facebook_icon.svg";
@@ -33,6 +37,10 @@ class Assets {
   /// Assets for assetsImagesHomeProfile
   /// assets/images/home_profile.png
   static const String assetsImagesHomeProfile = "assets/images/home_profile.png";
+
+  /// Assets for assetsImagesLocation
+  /// assets/images/location.svg
+  static const String assetsImagesLocation = "assets/images/location.svg";
 
   /// Assets for assetsImagesLogo
   /// assets/images/logo.svg
