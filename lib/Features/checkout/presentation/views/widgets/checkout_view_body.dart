@@ -1,6 +1,9 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce_app/Features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_ecommerce_app/Features/checkout/presentation/views/widgets/checkout_steps.dart';
 import 'package:fruits_ecommerce_app/Features/checkout/presentation/views/widgets/checkout_steps_page_view.dart';
+import 'package:fruits_ecommerce_app/core/helper_functions/show_snack_bar.dart';
 import 'package:fruits_ecommerce_app/core/widgets/custom_bottom.dart';
 
 class CheckoutViewBody extends StatefulWidget {
@@ -37,7 +40,10 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
       child: Column(
         children: [
-          CheckoutSteps(currentPageIndex: currentPageIndex, pageController: pageController),
+          CheckoutSteps(
+            currentPageIndex: currentPageIndex,
+            pageController: pageController,
+          ),
           SizedBox(height: 32),
 
           Expanded(
@@ -45,10 +51,15 @@ class _CheckoutViewBodyState extends State<CheckoutViewBody> {
           ),
           CustomBottom(
             onPressed: () {
-              pageController.nextPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
+              if (context.read<OrderEntity>().payWitchCash != null) {
+                pageController.nextPage(
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeInOut,
+                );
+              }
+              else{
+                showErrorSnackBar(context, 'يرجي تحديد طريقه الدفع');
+              }
             },
             text: getNextButtonText(currentPageIndex),
           ),

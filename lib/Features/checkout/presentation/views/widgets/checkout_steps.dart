@@ -1,11 +1,17 @@
-
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruits_ecommerce_app/Features/checkout/domain/entities/order_entity.dart';
 import 'package:fruits_ecommerce_app/Features/checkout/presentation/views/widgets/build_step_item.dart';
+import 'package:fruits_ecommerce_app/core/helper_functions/show_snack_bar.dart';
 
 class CheckoutSteps extends StatelessWidget {
-  const CheckoutSteps({super.key, required this.currentPageIndex, required this.pageController});
- final int currentPageIndex ;
- final PageController pageController;
+  const CheckoutSteps({
+    super.key,
+    required this.currentPageIndex,
+    required this.pageController,
+  });
+  final int currentPageIndex;
+  final PageController pageController;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -14,11 +20,17 @@ class CheckoutSteps extends StatelessWidget {
         int stepNumber = e.key + 1;
         return GestureDetector(
           onTap: () {
-           pageController.animateToPage(
-              e.key,
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            );
+            if (context.read<OrderEntity>().payWitchCash != null) {
+              pageController.animateToPage(
+                e.key,
+                duration: const Duration(milliseconds: 300),
+                curve: Curves.easeInOut,
+              );
+             
+            }
+            else if(currentPageIndex == 0){
+              showErrorSnackBar(context, 'يرجي تحديد طريقه الدفع');
+            }
           },
           child: BuildStepItem(
             text: e.value,
@@ -30,7 +42,6 @@ class CheckoutSteps extends StatelessWidget {
     );
   }
 }
-
 
 List<String> getSteps() {
   return ['الشحن', 'العنوان', 'الدفع'];

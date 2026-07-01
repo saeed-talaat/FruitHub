@@ -99,7 +99,7 @@ void showErrorSnackBar(BuildContext context, String message) {
           ],
         ),
       ),
-      duration: const Duration(seconds: 3),
+      duration: const Duration(seconds: 1),
     ),
   );
 }

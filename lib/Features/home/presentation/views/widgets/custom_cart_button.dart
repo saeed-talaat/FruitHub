@@ -5,16 +5,23 @@ import 'package:fruits_ecommerce_app/Features/home/presentation/cubits/cart_cubi
 import 'package:fruits_ecommerce_app/core/widgets/custom_bottom.dart';
 
 class CustomCartButton extends StatelessWidget {
-  const CustomCartButton({super.key});
-
+  const CustomCartButton({super.key, required this.isActive});
+  final bool isActive;
   @override
   Widget build(BuildContext context) {
-    return CustomBottom(
-      onPressed: () {
-        Navigator.pushNamed(context, CheckoutView.routeName);
-      },
-      text:
-          'الدفع  ${context.watch<CartCubit>().cartEntity.calclateTotalPrice()} جنيه',
+    return Visibility(
+      visible: isActive,
+      child: CustomBottom(
+        onPressed: () {
+          Navigator.pushNamed(
+            context,
+            CheckoutView.routeName,
+            arguments: context.read<CartCubit>().cartEntity,
+          );
+        },
+        text:
+            'الدفع  ${context.watch<CartCubit>().cartEntity.calclateTotalPrice()} جنيه',
+      ),
     );
   }
 }
